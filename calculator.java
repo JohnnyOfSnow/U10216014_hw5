@@ -2,8 +2,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import java.util.Arrays;
 
 public class calculator extends JFrame{
+
+	int[] stringToArray = new int[];
+	String arrayToString = " ";
+	int inputIndex = 0;
 
 	private JButton jbtOne = new JButton("1");
 	private JButton jbtTwo = new JButton("2");
@@ -79,10 +84,14 @@ public class calculator extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// Get values from text field.
 				if (e.getSource() == jbtOne) {
-					jtfDisplayZone.setText(String.format("%d",4));
+					stringToArray[inputIndex] = 1;
+					inputIndex = inputIndex + 1;
 				} else {
-					jtfDisplayZone.setText(String.format("%d",0));
+					stringToArray[inputIndex] = 0;
+					inputIndex = inputIndex + 1;
 				}
+				arrayToString = Arrays.toString(stringToArray);
+				jtfDisplayZone.setText(arrayToString);
 			}
 		}
 		public static void main(String[] args) {
