@@ -54,8 +54,37 @@ public class calculator extends JFrame{
 		add(jtfDisplayZone, BorderLayout.NORTH);
 		add(p1, BorderLayout.CENTER);
 		add(p2, BorderLayout.EAST);
+
+		jbtOne.addActionListener(new ButtonListener());
+		jbtTwo.addActionListener(new ButtonListener());
+		jbtThere.addActionListener(new ButtonListener());
+		jbtFour.addActionListener(new ButtonListener());
+		jbtFive.addActionListener(new ButtonListener());
+		jbtSix.addActionListener(new ButtonListener());
+		jbtSeven.addActionListener(new ButtonListener());
+		jbtEight.addActionListener(new ButtonListener());
+		jbtNine.addActionListener(new ButtonListener());
+		jbtZero.addActionListener(new ButtonListener());
+		jbtDelete.addActionListener(new ButtonListener());
+		jbtAllDelete.addActionListener(new ButtonListener());
+		jbtAddition.addActionListener(new ButtonListener());
+		jbtSubtraction.addActionListener(new ButtonListener());
+		jbtMultiplication.addActionListener(new ButtonListener());
+		jbtdivision.addActionListener(new ButtonListener());
+		jbtEqual.addActionListener(new ButtonListener());
+	}
+
+		private class ButtonListener implements ActionListener {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Get values from text field.
+				if (e.getSource() == jbtOne) {
+					jtfDisplayZone.setText(String.format("%d",4));
+				} else {
+					jtfDisplayZone.setText(String.format("%d",0));
+				}
+			}
 		}
-		
 		public static void main(String[] args) {
 			/** Main method */
 			calculator frame = new calculator(); // Create a frame.
