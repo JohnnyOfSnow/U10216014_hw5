@@ -5,11 +5,16 @@ import javax.swing.*;
 public class TestPassword extends JFrame {
 	private JPasswordField passwordField;
 	private JButton jbtEnter = new JButton("Enter");
+	private JTextField jtfDisplayResult = new JTextField("輸入你的密碼在上方的空格內");
 	TestPassword() {
-		JPanel p1 = new JPanel(new GridLayout(2,1));
+		JPanel p1 = new JPanel(new GridLayout(3,1));
 		passwordField = new JPasswordField();
+		passwordField.setHorizontalAlignment(JTextField.CENTER);
 		passwordField.setEchoChar('*');
 		p1.add(passwordField);
+		jtfDisplayResult.setHorizontalAlignment(JTextField.CENTER);
+		jtfDisplayResult.setEditable(false);
+		p1.add(jtfDisplayResult);
 		p1.add(jbtEnter);
 		add(p1, BorderLayout.CENTER);
 		// set the button event that user click it.
@@ -20,16 +25,12 @@ public class TestPassword extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String password = "0000";
-			String userPassword = "";
+			String userPassword = " ";
 			userPassword = String.valueOf(passwordField.getPassword());
 			if(password.equals(userPassword)){
-				System.out.println(userPassword);
-				System.out.println(password);
-				System.out.println("You can use calculator");
+				dispose(); // close the window
 			} else {
-				System.out.println("You can't use calculator");
-				System.out.println(userPassword);
-				System.out.println(password);
+				jtfDisplayResult.setText("你現在不可以使用計算機，但我再給你機會再輸入一次密碼");
 				userPassword = " ";
 			}
 			
