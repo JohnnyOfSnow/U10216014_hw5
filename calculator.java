@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
  
-public class calculatorTwo extends JFrame implements ActionListener{
+public class calculator extends JFrame implements ActionListener{
         
     JTextField numberfield;
     
@@ -21,7 +21,7 @@ public class calculatorTwo extends JFrame implements ActionListener{
    
     boolean point;
    
-    public calculatorTwo()
+    public calculator()
     {        
         super("123");
  
