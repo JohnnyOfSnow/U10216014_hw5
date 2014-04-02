@@ -16,10 +16,15 @@ public class ComputePasswordDialog {
 
 		} else {
 			String userPassword = JOptionPane.showInputDialog("Enter the password that you want, for example, 4758");
-			java.io.PrintWriter output = new java.io.PrintWriter(file);
-			output.print(userPassword);
+			if(userPassword == null) {
+				System.exit(0);
+			} else {
+				java.io.PrintWriter output = new java.io.PrintWriter(file);
+				output.print(userPassword);
 
-			output.close();
+				output.close();
+			}
+			
 		}
 	}
 }
