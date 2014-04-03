@@ -10,7 +10,10 @@
  */
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+
 import javax.swing.*;
+
 import java.util.*; 
 
 public class calculator extends JFrame implements ActionListener{
@@ -125,17 +128,11 @@ public class calculator extends JFrame implements ActionListener{
             frame1.setVisible(true);  
 
         } else {
-            String userPassword = JOptionPane.showInputDialog("第1次使用計算機需先輸入你想設定的密碼");
-            if(userPassword == null) {
-                        System.exit(0); // Exit the program.
-            } else {
-                        
-                        java.io.PrintWriter output = new java.io.PrintWriter("password.txt");
-                        output.print(userPassword); // Write password to the password.txt
-                        output.close();
-                        calculator a = new calculator(); // Open the calculator.
-                        a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-            }                                                  
+            TestPassword frame1 = new TestPassword(); // Create a frame.
+            frame1.setSize(350,300); // Set the frame size.
+            frame1.setLocationRelativeTo(null);
+            frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame1.setVisible(true);  
         }
           
     }
@@ -188,8 +185,27 @@ class TestPassword extends JFrame {
             userPassword = String.valueOf(passwordField.getPassword());
             if(password.equals(userPassword)){
                 dispose(); // close the window 
-                calculator a = new calculator(); // Open the calculator.
-                a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+                if(password == "0000"){
+                    userPassword = JOptionPane.showInputDialog("第1次使用計算機需先輸入你想設定的密碼");
+                    if(userPassword == null) {
+                        System.exit(0); // Exit the program.
+                    } else {
+                        java.io.PrintWriter output = null;
+                        try {
+                            output = new java.io.PrintWriter("password.txt");
+                        } catch (FileNotFoundException e1) {
+                            // TODO Auto-generated catch block
+                            e1.printStackTrace();
+                        }
+                        output.print(userPassword); // Write password to the password.txt
+                        output.close();
+                        calculator a = new calculator(); // Open the calculator.
+                        a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+                    }                       
+                } else {
+                     calculator a = new calculator(); // Open the calculator.
+                    a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+                }                              
             } else {
                 jtfDisplayResult.setText("你的密碼是錯的，我再給你一次機會輸入密碼");
                 userPassword = " "; // Initialization.
