@@ -122,7 +122,7 @@ public class calculator extends JFrame implements ActionListener{
             TestPassword frame1 = new TestPassword(); // Create a frame.
             frame1.setPassword(alreadyPassword);
             frame1.setSize(350,300); // Set the frame size.
-            frame1.setTitle("Calculator");
+            frame1.setTitle("確認使用者");
             frame1.setLocationRelativeTo(null);
             frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame1.setVisible(true);  
@@ -131,6 +131,7 @@ public class calculator extends JFrame implements ActionListener{
             TestPassword frame1 = new TestPassword(); // Create a frame.
             frame1.setSize(350,300); // Set the frame size.
             frame1.setLocationRelativeTo(null);
+            frame1.setTitle("確認使用者");
             frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame1.setVisible(true);  
         }
@@ -143,7 +144,7 @@ class TestPassword extends JFrame {
     private JButton jbtEnter = new JButton("Enter");
     private JPasswordField passwordField;
     private JTextField jtfDisplayResult = new JTextField("在上方的空格中輸入計算機密碼");
-    String password = "0000"; 
+    String password = "0000"; // 0000 as a initial password.
 
     TestPassword() {
 
@@ -186,7 +187,7 @@ class TestPassword extends JFrame {
             if(password.equals(userPassword)){
                 dispose(); // close the window 
                 if(password == "0000"){
-                    userPassword = JOptionPane.showInputDialog("第1次使用計算機需先輸入你想設定的密碼");
+                    userPassword = JOptionPane.showInputDialog("第1次使用計算機需先輸入你想設定的密碼"); // A dialog prompt user set password.
                     if(userPassword == null) {
                         System.exit(0); // Exit the program.
                     } else {
@@ -194,11 +195,11 @@ class TestPassword extends JFrame {
                         try {
                             output = new java.io.PrintWriter("password.txt");
                         } catch (FileNotFoundException e1) {
-                            // TODO Auto-generated catch block
+                            // To do Auto-generated catch block
                             e1.printStackTrace();
                         }
                         output.print(userPassword); // Write password to the password.txt
-                        output.close();
+                        output.close(); // Close the file
                         calculator a = new calculator(); // Open the calculator.
                         a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
                     }                       
